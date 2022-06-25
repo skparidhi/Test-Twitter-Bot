@@ -1,14 +1,10 @@
 import tweepy
 
-all_keys = open('twitterkeys', 'r').read().splitlines()
-api_key = all_keys[0]
-api_key_secret = all_keys[1]
-access_token = all_keys[2]
-access_token_secret = all_keys[3]
+auth = tweepy.OAuthHandler('XrRPLZgzX9mkgoE2IsIyuCvD7', '0oLGCukCRjmcGVPfjBoYlTJo5tTt3aw3nfRXiPBnjI6WaaMNy2')
+auth.set_access_token('1540547653645115392-171T7hELHaIGepMiu5jK0x5XjWNCby', 'H660cU4If9Zr48Wz5fWCQLVai75xJeviPIFFn6GKSUj6H')
 
-authenticator = tweepy.OAuthHandler(api_key, access_token, access_token_secret)
-authenticator.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth, wait_on_rate_limit=True)
 
-api = tweepy.API(authenticator, wait_on_rate_limit=True)
+public_tweets=api.home_timeline()
 
-api.create_friendship('skparidhi')
+print(public_tweets)
